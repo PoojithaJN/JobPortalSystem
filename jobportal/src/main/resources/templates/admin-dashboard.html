@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{::layout}">
+
+<head>
+    <title>Admin Dashboard</title>
+    <style>
+        .dashboard-section {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .dashboard-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #6610f2;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            padding: 20px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #343a40;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #6c757d;
+        }
+
+        .table th {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div class="container mt-5">
+        <!-- Title -->
+        <h2 class="dashboard-title">Admin Dashboard</h2>
+
+        <!-- Statistics -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="stat-box">
+                    <div class="stat-number" th:text="${totalUsers}">0</div>
+                    <div class="stat-label">Total Users</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-box">
+                    <div class="stat-number" th:text="${totalJobs}">0</div>
+                    <div class="stat-label">Total Job Posts</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-box">
+                    <div class="stat-number" th:text="${totalApplications}">0</div>
+                    <div class="stat-label">Total Applications</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Table -->
+        <div class="dashboard-section">
+            <h5 class="mb-3">All Registered Users</h5>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="user, iStat : ${users}">
+                        <td th:text="${iStat.index + 1}">1</td>
+                        <td th:text="${user.username}">john_doe</td>
+                        <td th:text="${user.email}">john@example.com</td>
+                        <td th:text="${user.role}">APPLICANT</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

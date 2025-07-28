@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>JobPortal - Find Your Dream Job</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .hero {
+            background: linear-gradient(to right, #6f42c1, #9f63f9);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .hero a {
+            padding: 12px 30px;
+            font-size: 18px;
+            background-color: white;
+            color: #6f42c1;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            padding: 50px 20px;
+            background-color: #f8f9fa;
+        }
+
+        .feature {
+            text-align: center;
+            max-width: 300px;
+        }
+
+        .feature h4 {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <h1>Welcome to JobPortal</h1>
+        <p>Your gateway to a better career</p>
+        <a href="/applicant/jobs">Get Started</a> <!-- FIXED URL -->
+    </div>
+
+    <div class="features">
+        <div class="feature">
+            <div>💼</div>
+            <h4>Find Jobs</h4>
+            <p>Browse thousands of jobs and apply with ease.</p>
+        </div>
+        <div class="feature">
+            <div>📝</div>
+            <h4>Manage Applications</h4>
+            <p>Track and manage all your job applications in one place.</p>
+        </div>
+        <div class="feature">
+            <div>🚀</div>
+            <h4>Boost Your Career</h4>
+            <p>Connect with top employers and advance your career.</p>
+        </div>
+    </div>
+
+</body>
+</html>

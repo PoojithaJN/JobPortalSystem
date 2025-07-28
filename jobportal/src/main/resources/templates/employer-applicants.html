@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Applicants</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>👥 Applicants for Your Jobs</h2>
+
+    <div th:if="${applications.isEmpty()}" class="alert alert-info text-center">
+        No applicants yet.
+    </div>
+
+    <div th:each="app : ${applications}" class="card mb-3 shadow-sm">
+        <div class="card-body">
+            <h5 th:text="${app.job.title}">Job Title</h5>
+            <p><strong>Applicant:</strong> <span th:text="${app.applicant.fullName}">Name</span></p>
+            <p><strong>Email:</strong> <span th:text="${app.applicant.email}">Email</span></p>
+            <p>
+                <strong>Resume:</strong>
+                <a th:href="@{/applicant/resume/{filename}(filename=${app.resumeFilename})}" target="_blank">
+                    View Resume
+                </a>
+            </p>
+            <p class="text-muted small" th:text="'Applied on: ' + ${#dates.format(app.createdAt, 'dd MMM yyyy')}"></p>
+        </div>
+    </div>
+
+    <a href="/employer/dashboard" class="btn btn-secondary mt-3">← Back to Dashboard</a>
+</div>
+</body>
+</html>

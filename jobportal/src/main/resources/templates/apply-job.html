@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Apply to Job - JobPortal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .job-detail {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-top: 50px;
+        }
+
+        .apply-btn {
+            background-color: #6610f2;
+            color: white;
+            border: none;
+        }
+
+        .apply-btn:hover {
+            background-color: #4e0ec0;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: #6610f2;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="job-detail">
+        <h3 class="mb-3" th:text="${job.title}">Job Title</h3>
+        <p><strong>Company:</strong> <span th:text="${job.company}">Company Name</span></p>
+        <p><strong>Location:</strong> <span th:text="${job.location}">Location</span></p>
+        <p><strong>Description:</strong></p>
+        <p th:text="${job.description}">Full job description here...</p>
+
+        <hr class="my-4">
+
+        <!-- ✅ Success Message -->
+        <div th:if="${param.success}" class="alert alert-success">
+            ✅ Application submitted successfully!
+        </div>
+
+        <!-- ❌ Error Messages -->
+        <div th:if="${param.error == 'NoFile'}" class="alert alert-warning">
+            ⚠️ Please upload a resume before submitting.
+        </div>
+        <div th:if="${param.error == 'InvalidFile'}" class="alert alert-danger">
+            ❌ Only PDF files are allowed.
+        </div>
+        <div th:if="${param.error == 'JobNotFound'}" class="alert alert-danger">
+            ❌ The selected job could not be found.
+        </div>
+        <div th:if="${param.error}" th:unless="${param.error == 'NoFile' or param.error == 'InvalidFile' or param.error == 'JobNotFound'}" class="alert alert-danger">
+            ❌ Something went wrong. Please try again.
+        </div>
+
+        <h5>Upload Resume</h5>
+        <form th:action="@{'/applicant/apply/' + ${job.id}}" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <input type="file" name="resumeFile" class="form-control" required>
+            </div>
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            <button type="submit" class="btn apply-btn">Submit Application</button>
+        </form>
+
+        <div class="mt-3">
+            <a href="/applicant/jobs" class="back-link">← Back to Job Listings</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

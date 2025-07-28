@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Employer Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .dashboard-header {
+      background-color: #6610f2;
+      color: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+    .card {
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      border: none;
+    }
+    .card-header {
+      background-color: #6610f2;
+      color: white;
+      font-weight: bold;
+    }
+    .btn-primary {
+      background-color: #6610f2;
+      border-color: #6610f2;
+    }
+    .btn-primary:hover {
+      background-color: #4e0ec0;
+      border-color: #4e0ec0;
+    }
+    .stat-card {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+    .stat-title {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .stat-value {
+      font-size: 32px;
+      color: #6610f2;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ✅ Navbar for Employer -->
+<nav class="navbar navbar-expand navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand" href="/employer/dashboard">Employer Panel</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarEmployer">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarEmployer">
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item me-2">
+          <span class="navbar-text text-white" th:text="'Welcome, ' + ${#authentication.name}">Welcome</span>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/employer/jobs">My Jobs</a>
+        </li>
+        <li class="nav-item">
+          <form th:action="@{/logout}" method="post" class="d-inline">
+            <button type="submit" class="btn btn-warning btn-sm ms-2">Logout</button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ✅ Content -->
+<div class="container mt-5">
+  <div class="dashboard-header text-center">
+    <h2>Welcome to Your Employer Dashboard</h2>
+    <p class="lead">Manage your job postings, view applications, and more.</p>
+  </div>
+
+  <!-- Stats Section -->
+  <div class="row">
+    <div class="col-md-4">
+      <div class="stat-card">
+        <h4 class="stat-title">Active Jobs</h4>
+        <p class="stat-value" th:text="${activeJobs}">0</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="stat-card">
+        <h4 class="stat-title">Applicants</h4>
+        <p class="stat-value" th:text="${totalApplicants}">0</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="stat-card">
+        <h4 class="stat-title">Posted Today</h4>
+        <p class="stat-value" th:text="${postedToday}">0</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Actions Section -->
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">Job Listings</div>
+        <div class="card-body">
+          <p>Manage your active job listings here. You can view and edit them.</p>
+          <a href="/employer/jobs" class="btn btn-primary">View Jobs</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">View Applicants</div>
+        <div class="card-body">
+          <p>View all applicants who have applied to your jobs.</p>
+          <a href="/employer/applicants" class="btn btn-primary">View Applicants</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notifications Section -->
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">Notifications</div>
+        <div class="card-body">
+          <p>No new notifications at the moment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ Bootstrap JS bundle for toggling -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

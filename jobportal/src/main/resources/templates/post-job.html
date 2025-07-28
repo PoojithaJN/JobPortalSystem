@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{::layout}">
+<head>
+    <title>Post a Job</title>
+    <style>
+        .card {
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+            border: none;
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #6610f2;
+        }
+
+        .form-label {
+            font-weight: 500;
+        }
+
+        .btn-submit {
+            background-color: #6610f2;
+            border-color: #6610f2;
+        }
+
+        .btn-submit:hover {
+            background-color: #4e0ec0;
+            border-color: #4e0ec0;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card p-4">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">Post a New Job</h4>
+
+                        <form th:action="@{/employer/post}" method="post">
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Job Title</label>
+                                <input type="text" class="form-control" id="title" name="title" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="company" class="form-label">Company</label>
+                                <input type="text" class="form-control" id="company" name="company" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="location" class="form-label">Location</label>
+                                <input type="text" class="form-control" id="location" name="location" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Job Description</label>
+                                <textarea class="form-control" id="description" name="description"
+                                          rows="4" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-submit">Post Job</button>
+                        </form>
+
+                        <div th:if="${param.success}" class="alert alert-success mt-3">Job posted successfully!</div>
+                        <div th:if="${param.error}" class="alert alert-danger mt-3">Failed to post job. Please try again.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
