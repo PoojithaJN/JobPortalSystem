@@ -37,30 +37,47 @@ A full-stack web application where employers can post jobs and applicants can se
    git clone https://github.com/your-username/jobportal.git
    cd jobportal
    
-2. Create MySQL Database:
-Login to your MySQL and create the database:
+### 2. Create MySQL Database
+
+Login to MySQL and run:
+
+```sql
 CREATE DATABASE job_portal;
 
-3. Import the Database Dump
-Import the provided SQL file (jobportal.sql):
-Using MySQL CLI:
-mysql -u root -p job_portal < jobportal.sql
 
-Using MySQL Workbench:
-Open MySQL Workbench
-Open jobportal.sql
-Select the job_portal schema
-Execute All (⚡)
+### 3. Import the Database Dump using MySQL Workbench
 
-✅ This sets up the tables: user, job, application with sample data.
+To import the sample data using MySQL Workbench:
 
-📄 Pages
-/login – Login page
-/register – Registration
-/applicant/jobs – Browse Jobs
-/applicant/my-applications – View Applied Jobs
-/applicant/profile – Edit Profile
-/employer/dashboard – Employer Dashboard
+1. Open MySQL Workbench  
+2. Select the MySQL connection (e.g., Localhost) and connect  
+3. Open the file:  
+   - Go to File → Open SQL Script  
+   - Select the provided file jobportal.sql  
+4. Choose the database:  
+   - At the top, select the "job_portal" schema  
+   - If not visible, click the "Refresh" icon in the schemas pane  
+5. Run the script:  
+   - Click the ⚡ lightning icon (or press Ctrl+Shift+Enter)  
+   - This will execute all the SQL statements and create the tables with sample data  
+
+✅ Tables created:  
+- user  
+- job  
+- application  
+
+---
+
+## 📄 Pages
+
+- `/login` – Login page  
+- `/register` – Registration page  
+- `/applicant/jobs` – Browse available jobs  
+- `/applicant/my-applications` – View submitted job applications  
+- `/applicant/profile` – Edit applicant profile and upload resume  
+- `/employer/dashboard` – Employer dashboard to manage job postings  
+- `/employer/post-job` – Form to post a new job  
+
 /employer/post-job – Post a Job
 
 
